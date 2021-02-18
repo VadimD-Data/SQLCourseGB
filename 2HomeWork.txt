@@ -1,0 +1,31 @@
+mysql
+
+CREATE DATABASE example;
+
+USE example;
+
+CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR(255));
+
+INSERT INTO 
+  users 
+VALUES 
+  (DEFAULT,'Alex')
+ ,(DEFAULT,'Erica')
+ ,(DEFAULT,'Pixel');
+
+COMMENT = 'Далее выходим из бд и делаем а после развёртываем дамп'
+\q 
+mysqldump example > example.sql
+COMMENT = 'После этого я вошёл и почистил базу, но не указывал данный код.(Чтобы убедится в работоспособности дампа. и да всё работает так как я пишу это уже после :))'
+mysql example < example.sql
+
+COMMENT = 'Далее я выполняю копирование таблицы Актёры из бд sakila в бд example и делаю ей дамп(кодил паралельно в MySQL Workbench и консоли но постарался подогнать финальный код под консоль)' 
+mysql
+USE example;
+CREATE TABLE example.actor(id SERIAL PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255));
+INSERT INTO actor SELECT actor_id, first_name, last_name FROM sakila.actor;
+
+mysqldump example actor --where="true limit 100" > example.sql
+mysql shop < example.sql
+
+COMMENT = "Я извиняюсь за мешанину кода... сложно паралельно работать в консоли и Workbench-е"
