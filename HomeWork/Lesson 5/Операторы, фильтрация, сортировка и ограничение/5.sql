@@ -1,0 +1,1 @@
+SELECT * FROM `user` WHERE id IN (5, 1, 2) ORDER BY id=2, id=1,id=5;

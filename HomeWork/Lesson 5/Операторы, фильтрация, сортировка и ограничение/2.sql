@@ -1,0 +1,12 @@
+ALTER TABLE `vk`.`user` 
+ADD COLUMN `111` VARCHAR(45) NULL DEFAULT '20.10.2017 8:10' AFTER `deleted_at`;
+
+
+UPDATE 	`user` 
+SET  `111`= STR_TO_DATE('20.10.2017 8:10', '%d.%m.%Y %H:%i') ;
+    
+ALTER TABLE `vk`.`user` 
+CHANGE COLUMN `111` `111` DATETIME NULL DEFAULT NULL ;
+
+
+SELECT * FROM `user` ;

@@ -1,0 +1,1 @@
+SELECT * FROM `user` WHERE  created_at LIKE '%-05-%' OR created_at LIKE '%-08-%';
