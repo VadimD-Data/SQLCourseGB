@@ -5,10 +5,11 @@ user_id,
 (SELECT COUNT(from_user_id) FROM vk.media WHERE from_user_id = user_id) AS media,
 (SELECT COUNT(from_user_id) FROM message WHERE from_user_id = user_id) AS message,
 (SELECT COUNT(from_user_id) FROM vk.post WHERE from_user_id = user_id) AS post,
-(SELECT SUM(likes+media+message+post))AS sum
+(SELECT SUM(friend_request+media+message+post))AS sum
 FROM `profile`
 GROUP BY user_id
-ORDER BY sum DESC;
+ORDER BY sum 
+LIMIT 10;
 
 -- Я правда очень долго сидел и думал как тут заменить изначальный GROUP BY в подзапросах. 
 -- В итоге пришёл к тому что лучше использовать WHERE, спустя часа 3 а может и больше(это сообщение я пишу в 3:39 ночи)
