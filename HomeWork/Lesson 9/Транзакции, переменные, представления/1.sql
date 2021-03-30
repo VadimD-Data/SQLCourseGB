@@ -1,0 +1,6 @@
+START TRANSACTION ;
+
+INSERT INTO shop (`user`)  SELECT `user` FROM sample;
+SELECT * FROM shop;
+
+COMMIT
